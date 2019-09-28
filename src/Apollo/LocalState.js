@@ -1,8 +1,7 @@
 // IsLoggedIn을 false, 나중에 로그인 성공하면 token을 localstorage에 두는것
 export const defaults = {
-  isLoggedIn: localStorage.getItem("token") !== null ? true : false
+  isLoggedIn: Boolean(localStorage.getItem("token")) || false
 };
-
 
 // 우리 앱은 지금 Local만 있으니..원래는 post가 열리고 닫히고 이런걸 다 LocalState에서 조절하는데
 // 일단 지금은 로그인만 조절해봅시다.

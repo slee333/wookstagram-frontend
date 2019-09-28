@@ -1,10 +1,11 @@
 import React from "react";
 import { gql } from "apollo-boost";
-import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Router from "./Router";
 import { useQuery } from "react-apollo-hooks";
+import styled, { ThemeProvider } from "styled-components";
+import Footer from "./Footer";
 
 // GraphQL query isLoggedIn을 정의해줍니다.
 // @client: d
@@ -13,18 +14,24 @@ const QUERY = gql`
     isLoggedIn @client
   }
 `;
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 935px;
+  width: 100%;
+`;
 
 export default () => {
   const {
     data: { isLoggedIn }
   } = useQuery(QUERY);
-  console.log(useQuery(QUERY).data)
+  console.log(useQuery(QUERY).data);
   return (
     <ThemeProvider theme={Theme}>
-      <>
+      <Wrapper>
         <GlobalStyles />
         <Router isLoggedIn={isLoggedIn} />
-      </>
+        <Footer />
+      </Wrapper>
     </ThemeProvider>
   );
 };
